@@ -8,22 +8,22 @@ SERVER_IP=$(host $server | head -1 | cut -d" " -f4)
 
 make clean && make all
 
-#./prec
-#./syscall
+./prec
+./syscall
 
-#./pipe_latency
-#./pipe_throughput
+./pipe_latency
+./pipe_throughput
 
 # Run UDP server on localhost in background
-#./udp/udp_server_latency &
-#./udp/udp_client_latency 127.0.0.1
+./udp/udp_server_latency &
+./udp/udp_client_latency 127.0.0.1
 
 ./udp/udp_server_throughput &
 ./udp/udp_client_throughput 127.0.0.1
 
 # Run UDP server on another host
-#ssh $server nohup /u/n/i/nisargs/private/cs736/udp/udp_server_latency < /dev/null &
-#./udp/udp_client_latency $SERVER_IP
+ssh $server nohup /u/n/i/nisargs/private/cs736/udp/udp_server_latency < /dev/null &
+./udp/udp_client_latency $SERVER_IP
 
 ssh $server nohup /u/n/i/nisargs/private/cs736/udp/udp_server_throughput < /dev/null &
 sleep 1
